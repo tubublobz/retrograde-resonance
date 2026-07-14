@@ -1,15 +1,35 @@
+---
+interface Props {
+	title?: string;
+	showBack?: boolean;
+}
+const { title = 'Retrograde Resonance', showBack = false } = Astro.props;
+---
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title} — Retrograde Resonance</title>
 	</head>
 	<body>
-		<slot />
+		<nav>
+			<a href="/">Accueil</a>
+			<a href="/lookbook">Lookbook</a>
+			<a href="/blog">Blog</a>
+			<a href="/a-propos">À propos</a>
+			<a href="/contact">Contact</a>
+		</nav>
+
+		{showBack && (
+			<p><a href="javascript:history.back()">&larr; Retour</a></p>
+		)}
+
+		<main>
+			<slot />
+		</main>
 	</body>
 </html>
 
