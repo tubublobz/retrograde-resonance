@@ -1,0 +1,19 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { Image } from 'astro:assets';
+
+const looks = await getCollection('lookbook');
+const sorted = looks.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<Layout title="Lookbook">
+  <h1>Lookbook</h1>
+  <div class="grid">
+    {sorted.map((look) => (
+      <a href={`/lookbook/${look.id}/`}>
+        <Image src={look.data.coverImage} alt={look.data.title} width={400} height={500} />
+        <h2>{look.data.title}</h2>
+      </a>
+    ))}
+  </div>
+</Layout>
