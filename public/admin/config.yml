@@ -1,0 +1,37 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/assets"
+public_folder: "/src/assets"
+
+collections:
+  - name: "lookbook"
+    label: "Lookbook"
+    folder: "src/content/lookbook"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image de couverture", name: "coverImage", widget: "image" }
+      - { label: "Galerie", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" }, required: false }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime" }
+      - { label: "Image de couverture", name: "coverImage", widget: "image" }
+      - label: "Catégorie"
+        name: "category"
+        widget: "select"
+        required: false
+        options: ["matieres", "savoir-faire", "entretien"]
+      - { label: "Extrait", name: "excerpt", widget: "text", required: false }
+      - { label: "Contenu", name: "body", widget: "markdown" }
